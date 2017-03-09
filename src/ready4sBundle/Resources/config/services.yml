@@ -1,0 +1,4 @@
+services:
+#    ready4s.example:
+#        class: ready4sBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

@@ -1,0 +1,58 @@
+{% extends 'ready4sBundle::base.html.twig' %}
+
+{% block body %}
+
+    <h1>Posts list</h1>
+    <table class="text-center">
+        <thead>
+        <tr class="text-center">
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Link do postu</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr class="text-center">
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.description }}</td>
+                <td>{{ post.date|date('d-m-Y H:i:s') }}</td>
+                <td>{{ post.user.name }}</td>
+                <td>{{ post.user.surname }}</td>
+                <td><a href="{{ path('post_show', {'id': post.id }) }}"><button class="btn btn-sm btn-primary">Show {{ post.id }}</button></a></td>
+                <td>
+
+                </td>
+            </tr>
+        {% endfor %}
+
+        <tr style="display:none" id="hidden">
+            <td data-type="id">x</td>
+            <td data-type="title">x</td>
+            <td data-type="description">x</td>
+            <td data-type="date">x</td>
+            <td data-type="name">x</td>
+            <td data-type="surname">x</td>
+            <td data-type="show"><a href="">Show post</a></td>
+            <td>
+                <button id='' class="addComment btn btn-sm btn-danger">Add a comment</button>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <button class="btn btn-lg btn-info" id="show-form">Create a new post</button>
+
+    {{ form_start(form, {'attr': {'id': 'form_new_post', 'class' : 'expand'}}) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Submit post"/>
+    {{ form_end(form) }}
+    <div id="myModal" class="modal">
+
+{% endblock %}
