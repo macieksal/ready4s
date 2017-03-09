@@ -8,3 +8,12 @@ services:
             class: ready4sBundle\Form\RegistrationType
             tags:
                 - { name: form.type, alias: app_user_registration }
+
+
+
+    fos.registration_confirm:
+        class: ready4sBundle\EventListener\RegistrationConfirmListener
+        arguments: ['@router']
+        tags:
+            - { name: kernel.event_subscriber }
+

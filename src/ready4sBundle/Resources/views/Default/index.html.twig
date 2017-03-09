@@ -1,1 +1,40 @@
-Hello World!
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <link rel="stylesheet" href="/css/modal.css">
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+
+{% if app.user is null %}
+    <p>Hello nieznajomy xD</p>
+    <a href="register">
+        <button class="btn btn-lg btn-primary">Register</button>
+    </a>
+    <a href="login">
+        <button class="btn btn-lg btn-info">Login</button>
+    </a>
+
+{% else %}
+    <p>Witaj, {{ app.user.username }}</p>
+    <a href="{{ path('post_index') }}">
+        <button class="btn btn-lg btn-info">Go to post index</button>
+    </a>
+
+{% endif %}
+
+<script
+        src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+<script src="/js/app.js" type="text/javascript"></script>
+<script src="/js/comment.js" type="text/javascript"></script>
+
+</body>
+</html>
